@@ -7,7 +7,16 @@ let fruits={
 }
 
 // fruit objects stored in this array.
-let fruitCollection=[];
+let fruitCollection=[]
+if(JSON.parse(localStorage.getItem('fruitCollection'))){
+    fruitCollection=JSON.parse(localStorage.getItem('fruitCollection')) ;
+    view()
+}
+
+// if(JSON.parse(sessionStorage.getItem('fruitCollection'))){
+//     fruitCollection=JSON.parse(sessionStorage.getItem('fruitCollection')) ;
+//     view()
+// }
 
 // function for adding fruits to array.
 function add(){
@@ -85,6 +94,12 @@ function view(){
     // document.querySelector("#con-2").style.display="block";
     document.querySelector("#boxes").innerHTML=boxRender;
     QueryCon_2Boxes("block");
+
+    // sessionStorage.setItem("fruitCollection",JSON.stringify(fruitCollection));
+
+
+    localStorage.setItem("fruitCollection",JSON.stringify(fruitCollection));
+
 };
 
 // to edit existing data

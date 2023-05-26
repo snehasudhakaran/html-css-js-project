@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Progress</title>
+        <meta charset="utf-8">
+        <style>
+            .container{
+                width:40%;
+                display:block;
+                margin:50px auto;
+                display:flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .container .progress{
+                display: flex;
+            }
+            .container .progress .circle{
+                width:40px;
+                height:40px;
+                border:4px solid  rgb(235, 233, 233);
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: rgb(191, 189, 189);
+                font-weight: 800;
+            }
+            .container .progress .line{
+                width:100px;
+                height:4px;
+                background-color: rgb(235, 233, 233);
+                margin-top: 22px;
+            }
+            body{
+                text-align: center;
+            }
+            button{
+                background-color: rgb(16, 167, 213);
+                border-radius: 8px;
+                color:white;
+                font-weight: 400;
+                font-size: 15px;
+                padding: 8px 25px 7px;
+                border: none;
+                transition: background-color 0.3s;
+            }
+            .container .progress #circle-1{
+                border: 4px solid rgb(16,167,213);
+                transition: background-color 0.3s;
+            }
+            #button-1{
+                background-color: rgb(235, 233, 233);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="progress">
+                <div class="circle" id="circle-1"> 
+                    <p>1</p>
+                </div>
+
+                <div class="line" id="line_1"></div>
+
+                <div class="circle" id="circle_2">
+                    <p>2</p>
+                </div>
+
+                <div class="line" id="line_2"></div>
+
+                <div class="circle" id="circle_3">
+                    <p>3</p>
+                </div>
+
+                <div class="line" id="line_3"></div>
+
+                <div class="circle" id="circle_4">
+                    <p>4</p>
+                </div>
+            </div>
+        </div>
+        <button type="button" id="button-1" onclick="prev()">Prev</button>
+        <button type="button" id="button-2" onclick="next()">Next</button>
+        <script>
+            let line_1=document.getElementById("line_1");
+            let circle_2=document.getElementById("circle_2");
+
+            let line_2=document.getElementById("line_2");
+            let circle_3=document.getElementById("circle_3");
+
+            let line_3=document.getElementById("line_3");
+            let circle_4=document.getElementById("circle_4");
+
+            let button2= document.getElementById("button-2");
+            let button1= document.getElementById("button-1");
+            let count=0;
+            
+
+            function setValueForFirstCircle(borderColor,backgroundColor){
+                circle_2.style.border=borderColor;
+                line_1.style.background=backgroundColor;
+            };
+
+            function setValueForSecondCircle(borderColor,backgroundColor){
+                circle_3.style.border=borderColor;
+                line_2.style.background=backgroundColor;
+            };
+
+            function setValueForThirdCircle(borderColor,backgroundColor){
+                circle_4.style.border=borderColor;
+                line_3.style.background=backgroundColor;
+            };
+
+            function next(){
+                count++;
+                if (count===1){
+                    setValueForFirstCircle("4px solid rgb(16,167,213)","rgb(16,167,213)");
+                    
+                    button1.disabled=false;
+                    button1.style.background="rgb(16,167,213)";
+                }
+                else if(count===2){
+                    setValueForFirstCircle("4px solid rgb(16,167,213)","rgb(16,167,213)");
+
+                    setValueForSecondCircle("4px solid rgb(16,167,213)","rgb(16,167,213)");
+
+                    button1.disabled=false;
+                    button1.style.background="rgb(16,167,213)";
+                }
+                else if (count===3){
+
+                    setValueForFirstCircle("4px solid rgb(16,167,213)","rgb(16,167,213)");
+
+                    setValueForSecondCircle("4px solid rgb(16,167,213)","rgb(16,167,213)");
+
+                    setValueForThirdCircle("4px solid rgb(16,167,213)","rgb(16,167,213)");
+
+                    button2.disabled=true;
+                    button2.style.background=" rgb(235, 233, 233)";
+                    button1.disabled=false;
+                    button1.style.background="rgb(16,167,213)";
+                }
+                console.log(count)
+            }
+
+            function prev(){
+                
+                if (count===3){
+                    setValueForThirdCircle("4px solid  rgb(235, 233, 233)", "rgb(235, 233, 233)");
+
+                    button2.disabled=false;
+                    button2.style.background="rgb(16,167,213) ";
+                }
+                else if (count===2){
+                    setValueForThirdCircle("4px solid  rgb(235, 233, 233)", "rgb(235, 233, 233)");
+
+                    setValueForSecondCircle("4px solid  rgb(235, 233, 233)", "rgb(235, 233, 233)");
+
+                    button2.disabled=false;
+                    button2.style.background="rgb(16,167,213) ";
+                }
+                else if (count===1){
+                    setValueForThirdCircle("4px solid  rgb(235, 233, 233)", "rgb(235, 233, 233)");
+
+                    setValueForSecondCircle("4px solid  rgb(235, 233, 233)", "rgb(235, 233, 233)");
+
+                    setValueForFirstCircle("4px solid  rgb(235, 233, 233)", "rgb(235, 233, 233)");
+
+                    button2.disabled=false;
+                    button2.style.background="rgb(16,167,213) ";
+                    button1.disabled=true;
+                    button1.style.background="rgb(235, 233, 233)";
+                }
+
+                count--;
+
+                console.log(count)
+            }
+
+            
+        </script>
+    </body>
+</html>
